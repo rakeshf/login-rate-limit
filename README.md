@@ -19,8 +19,8 @@ A lightweight WordPress firewall plugin with **rate-limiting for login protectio
 1. Upload the plugin to your `/wp-content/plugins/` directory:
     ```bash
     cd wp-content/plugins/
-    git clone https://your-repo-url/my-waf-plugin.git
-    cd my-waf-plugin
+    git clone https://github.com/rakeshf/login-rate-limit.git
+    cd login-rate-limit
     composer install
     ```
 
