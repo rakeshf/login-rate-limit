@@ -1,8 +1,15 @@
 <?php
 /**
- * Plugin Name: Login Rate Limiter
- * Plugin URI:
- * Description: Brute Force Protection for login page.
+ * Plugin Name:     Login Rate Limiter
+ * Plugin URI:      https://github.com/rakeshf/login-rate-limit
+ * Description:     📈 Brute Force Protection for login page.
+ * Author:          Rakesh Falke
+ * Author URI:      https://github.com/rakeshf
+ * Text Domain:     stock-analyzer
+ * Domain Path:     /languages
+ * Version:         0.1.0
+ *
+ * @package         Login_Rate_Limit
  */
 
 // === Configuration ===
