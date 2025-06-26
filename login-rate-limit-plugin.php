@@ -65,6 +65,10 @@ function login_rate_limit_plugin_settings_page() {
         update_option('waf_redis_dsn', sanitize_text_field($_POST['waf_redis_dsn']));
     }
 
+    if (isset($_POST['waf_interval'])) {
+        update_option('waf_interval', sanitize_text_field($_POST['waf_interval']));
+    }
+
     $current_attempts = waf_get_allowed_attempts();
     $current_storage = waf_get_storage_type();
     ?>
@@ -93,6 +97,35 @@ function login_rate_limit_plugin_settings_page() {
                     <td>
                         <input name="waf_redis_dsn" type="text" id="waf_redis_dsn" value="<?php echo esc_attr(get_option('waf_redis_dsn', 'redis://localhost')); ?>" class="regular-text" />
                         <p class="description">Example: redis://localhost or redis://password@localhost:6379</p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><label for="waf_interval">Rate Limit Interval</label></th>
+                    <td>
+                        <select name="waf_interval" id="waf_interval">
+                            <?php
+                            $intervals = [
+                                '10 seconds'   => '10 seconds',
+                                '30 seconds'   => '30 seconds',
+                                '60 seconds'   => '1 minute',
+                                '300 seconds'  => '5 minutes',
+                                '600 seconds'  => '10 minutes',
+                                '900 seconds'  => '15 minutes',
+                                '1200 seconds' => '20 minutes',
+                                '3600 seconds' => '1 hour'
+                            ];
+                            $current = get_option('waf_interval', '60 seconds');
+                            foreach ($intervals as $value => $label) {
+                                printf(
+                                    '<option value="%s"%s>%s</option>',
+                                    esc_attr($value),
+                                    selected($current, $value, false),
+                                    esc_html($label)
+                                );
+                            }
+                            ?>
+                        </select>
+                        <p class="description">Choose how long to block after too many attempts.</p>
                     </td>
                 </tr>
             </table>

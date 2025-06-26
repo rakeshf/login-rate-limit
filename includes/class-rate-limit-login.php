@@ -9,6 +9,7 @@ use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 class Rate_Limit_Login {
     public static function enforce($ip, $allowedAttempts = 5) {
         $storageType = get_option('waf_storage_type', 'filesystem');
+        $interval = get_option('waf_interval', '60 seconds'); // <-- Get interval from settings
 
         if ( $storageType === 'redis' ) {
             $dsn = get_option('waf_redis_dsn', 'redis://localhost');
@@ -25,7 +26,7 @@ class Rate_Limit_Login {
             'id' => $ip,
             'policy' => 'fixed_window',
             'limit' => $allowedAttempts,
-            'interval' => '60 Seconds',
+            'interval' => $interval, // <-- Use configured interval
         ], $storage);
 
         $limiter = $factory->create($ip);
