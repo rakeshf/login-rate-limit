@@ -146,26 +146,7 @@ function login_rate_limit_plugin_settings_page() {
     <?php
 }
 
-use Symfony\Component\Cache\Adapter\FilesystemAdapter;
-use Symfony\Component\Cache\Adapter\RedisAdapter;
-use Symfony\Component\RateLimiter\Storage\CacheRateLimiterStorage;
-
-function waf_get_storage() {
-    $type = get_option('waf_storage_type', 'filesystem');
-    if ($type === 'redis') {
-        $dsn = get_option('waf_redis_dsn', 'redis://localhost');
-        try {
-            $redis = RedisAdapter::createConnection($dsn);
-            $cache = new RedisAdapter($redis);
-        } catch (Exception $e) {
-            // Fallback to filesystem if Redis fails
-            $cache = new FilesystemAdapter();
-        }
-    } else {
-        $cache = new FilesystemAdapter();
-    }
-    return new CacheRateLimiterStorage($cache);
-}
+// Note: custom rate limiter implemented in includes/class-rate-limit-login.php
 
 // Use the configured value in your rate limiter
 add_action('login_init', function () {

@@ -1,0 +1,1 @@
+{"version":1,"defects":{"RateLimitLoginTest::testAllowsUnderLimit":4,"RateLimitLoginTest::testBlocksOverLimit":5},"times":{"RateLimitLoginTest::testAllowsUnderLimit":0.112,"RateLimitLoginTest::testBlocksOverLimit":0.122}}

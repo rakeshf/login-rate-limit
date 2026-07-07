@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<ruleset name="Login Rate Limit WPCS">
+    <description>PHP_CodeSniffer ruleset for the Login Rate Limit plugin using WPCS.</description>
+
+    <!-- Use the WordPress standard provided by WPCS -->
+    <rule ref="WordPress" />
+
+    <!-- Ignore vendor and tests directory -->
+    <exclude-pattern>vendor/*</exclude-pattern>
+    <exclude-pattern>tests/*</exclude-pattern>
+</ruleset>
